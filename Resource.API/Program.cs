@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Resource.Business;
 using Resource.Business.Abstraction;
+using Resource.Business.Kafka;
 using Resource.Repository;
 using Resource.Repository.Abstraction;
 
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<ResourceDbContext>(options =>
     a => a.MigrationsAssembly("Resource.API")));
 builder.Services.AddScoped<IBusiness, Business>();
 builder.Services.AddScoped<IRepository, Repository>();
-
+builder.Services.AddKafkaProducerService<KafkaTopicsOutput, ProducerService>(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

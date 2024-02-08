@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Resource.Shared\Resource.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Utility.Kafka" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

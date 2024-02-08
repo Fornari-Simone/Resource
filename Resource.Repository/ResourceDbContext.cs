@@ -22,5 +22,6 @@ namespace Resource.Repository
             modelBuilder.Entity<ResourceDb>().Property(x => x.ID).ValueGeneratedOnAdd();
         }
         public DbSet<ResourceDb> ResourceDb { get; set; }
+        public DbSet<TransitionalOutbox> TransitionalOutboxes { get; set; }
     }
 }

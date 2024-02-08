@@ -38,7 +38,7 @@ namespace Resource.Repository
         {
             _context.TransitionalOutboxes.Remove(
                 (await GetAllTransactionalOutboxByKey(ID, cancellation)) ??
-                throw new ArgumentException($"TransactionalOutbox con ID {ID} non trovato", nameof(ID));
+                throw new ArgumentException($"TransactionalOutbox con ID {ID} non trovato", nameof(ID)));
         }
 
         public async Task<TransitionalOutbox?> GetAllTransactionalOutboxByKey(long ID, CancellationToken cancellation = default)

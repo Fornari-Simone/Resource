@@ -15,7 +15,25 @@ namespace Resource.Repository
         {
             await _context.AddAsync(resourceDb, cancellation);
         }
+        public async Task<ResourceDb?> GetResource(int ID, CancellationToken cancellation = default)
+        {
+            return await _context.ResourceDb.FindAsync(ID, cancellation);
+        }
 
+        public async Task RemoveResource(ResourceDb resourceDb, CancellationToken cancellation = default)
+        {
+            _context.ResourceDb.Remove(resourceDb);
+        }
+        public async Task UpdateResource(int delta, int ID, CancellationToken cancellation = default)
+        {
+            ResourceDb? resourceDb = await this.GetResource(ID, cancellation);
+            if (delta < 0 && resourceDb.Own < delta)
+            {
+                resourceDb.Own = 0;
+            }
+            resourceDb.Own += delta;
+        }
+        
         public async Task DeleteTransactionalOutbox(long ID, CancellationToken cancellation = default)
         {
             _context.TransitionalOutboxes.Remove(
@@ -33,19 +51,11 @@ namespace Resource.Repository
             return await _context.TransitionalOutboxes.ToListAsync(cancellation);
         }
 
-        public async Task<ResourceDb?> GetResource(int ID, CancellationToken cancellation = default)
-        {
-            return await _context.ResourceDb.FindAsync(ID, cancellation);
-        }
-
-        public async Task RemoveResource(ResourceDb resourceDb, CancellationToken cancellation = default)
-        {
-            _context.ResourceDb.Remove(resourceDb);
-        }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellation = default)
         {
             return await _context.SaveChangesAsync(cancellation);
         }
+
     }
 }

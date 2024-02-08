@@ -12,6 +12,7 @@ namespace Resource.Business.Abstraction
         Task AddResource(ResourceDTO resourceDTO, CancellationToken cancellation = default);
         Task<ResourceDTO> GetResource(int ID, CancellationToken cancellation = default);
         Task RemoveResource(int ID, CancellationToken cancellation = default);
+        Task ModifyOwn(int ID, int delta, CancellationToken cancellation = default);
 
     }
 }

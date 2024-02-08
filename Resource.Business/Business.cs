@@ -55,11 +55,17 @@ namespace Resource.Business
             };
         }
 
+        public async Task ModifyOwn(int ID, int delta, CancellationToken cancellation = default)
+        {
+            await _repository.UpdateResource(ID, delta, cancellation);
+        }
+
         public async Task RemoveResource(int ID, CancellationToken cancellation = default)
         {
             ResourceDb resourceDb = await _repository.GetResource(ID, cancellation);
             await _repository.RemoveResource(resourceDb, cancellation);
             await _repository.SaveChangesAsync(cancellation);
         }
+    
     }
 }

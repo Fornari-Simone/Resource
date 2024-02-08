@@ -33,5 +33,11 @@ namespace Resource.API.Controllers
             await _business.RemoveResource(ID, cancellation);
             return Ok("DONE!!!");
         }
+        [HttpPatch(Name = "ModifyOwn")]
+        public async Task<ActionResult> ModifyOwn(int ID, int delta, CancellationToken cancellation = default)
+        {
+            await _business.ModifyOwn(ID, delta, cancellation);
+            return Ok("Done!!");
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace Resource.Business.Kafka
                     await repository.DeleteTransactionalOutbox(item.ID, cancellation);
 
                     await repository.SaveChangesAsync(cancellation);
-                    Logger.LogInformation("Record Eliminato")
+                    Logger.LogInformation("Record Eliminato");
                 } catch (Exception ex)
                 {
                     Logger.LogError(ex, "Errore nel metodo ProducerService.OperationsAsync durante l'elaborazione {message} : {ex}", message, ex);

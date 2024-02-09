@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Resource.Business.Abstraction;
+using Resource.Business.Factory;
 using Resource.Repository.Abstraction;
 using Resource.Repository.Model;
 using Resource.Shared;
@@ -10,6 +12,7 @@ namespace Resource.Business
     {
         private readonly IRepository _repository;
         private readonly ILogger<Business> _logger;
+        private readonly IMapper _mapper;
         public Business(ILogger<Business> logger, IRepository repository) 
         { 
             _logger = logger;
@@ -33,6 +36,10 @@ namespace Resource.Business
                 LMD = resourceDTO.LMD
             }, cancellation);
             await _repository.SaveChangesAsync(cancellation);
+
+            var resource = _mapper.Map<ResourceDTO>(resourceDTO);
+            await _repository.InsertTransactionalOutbox(TransactionalOutboxFactory.CreateInsert(resource), cancellation);
+            await _repository.SaveChangesAsync();
         }
 
         public async Task<ResourceDTO> GetResource(int ID, CancellationToken cancellation = default)
@@ -58,6 +65,11 @@ namespace Resource.Business
         public async Task ModifyOwn(int ID, int delta, CancellationToken cancellation = default)
         {
             await _repository.UpdateResource(ID, delta, cancellation);
+            await _repository.SaveChangesAsync();
+
+            var resource = _mapper.Map<ResourceDTO>(await _repository.GetResource(ID, cancellation));
+            await _repository.InsertTransactionalOutbox(TransactionalOutboxFactory.CreateUpdate(resource), cancellation);
+            await _repository.SaveChangesAsync();
         }
 
         public async Task RemoveResource(int ID, CancellationToken cancellation = default)
@@ -65,6 +77,10 @@ namespace Resource.Business
             ResourceDb resourceDb = await _repository.GetResource(ID, cancellation);
             await _repository.RemoveResource(resourceDb, cancellation);
             await _repository.SaveChangesAsync(cancellation);
+
+            var respository = _mapper.Map<ResourceDTO>(resourceDb);
+            await _repository.InsertTransactionalOutbox(TransactionalOutboxFactory.CreateDelete(respository), cancellation);
+            await _repository.SaveChangesAsync();
         }
     
     }

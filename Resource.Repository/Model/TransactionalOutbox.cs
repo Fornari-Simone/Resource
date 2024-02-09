@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Resource.Repository.Model
 {
-    public class TransitionalOutbox
+    public class TransactionalOutbox
     {
         public long ID { get; set; }
         public string Tabella { get; set; } = string.Empty;

@@ -13,9 +13,10 @@ namespace Resource.Repository.Abstraction
         Task<ResourceDb> GetResource(int ID, CancellationToken cancellation = default);
         Task RemoveResource(ResourceDb resourceDb, CancellationToken cancellation = default);
         Task UpdateResource(int delta, int ID, CancellationToken cancellation = default);
-        Task DeleteTransactionalOutbox(long ID, CancellationToken cancellation);
-        Task<TransitionalOutbox?> GetAllTransactionalOutboxByKey(long ID, CancellationToken cancellation = default);
-        Task<IEnumerable<TransitionalOutbox>> GetAllTransactionalOutbox(CancellationToken cancellation);
         Task<int> SaveChangesAsync(CancellationToken cancellation = default);
+        Task DeleteTransactionalOutbox(long ID, CancellationToken cancellation);
+        Task<TransactionalOutbox?> GetAllTransactionalOutboxByKey(long ID, CancellationToken cancellation = default);
+        Task<IEnumerable<TransactionalOutbox>> GetAllTransactionalOutbox(CancellationToken cancellation);
+        Task InsertTransactionalOutbox(TransactionalOutbox transactionalOutbox, CancellationToken cancellation = default);
     }
 }

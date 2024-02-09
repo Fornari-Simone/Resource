@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Utility.Kafka" Version="1.0.0" />
+    <PackageReference Include="Utility.Kafka" Version="1.0.3" />
   </ItemGroup>
 
 </Project>

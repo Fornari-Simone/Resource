@@ -41,16 +41,20 @@ namespace Resource.Repository
                 throw new ArgumentException($"TransactionalOutbox con ID {ID} non trovato", nameof(ID)));
         }
 
-        public async Task<TransitionalOutbox?> GetAllTransactionalOutboxByKey(long ID, CancellationToken cancellation = default)
+        public async Task<TransactionalOutbox?> GetAllTransactionalOutboxByKey(long ID, CancellationToken cancellation = default)
         {
             return await _context.TransitionalOutboxes.FirstOrDefaultAsync(x => x.ID == ID, cancellation);
         }
 
-        public async Task<IEnumerable<TransitionalOutbox>> GetAllTransactionalOutbox(CancellationToken cancellation = default)
+        public async Task<IEnumerable<TransactionalOutbox>> GetAllTransactionalOutbox(CancellationToken cancellation = default)
         {
             return await _context.TransitionalOutboxes.ToListAsync(cancellation);
         }
 
+        public async Task InsertTransactionalOutbox(TransactionalOutbox transactionalOutbox, CancellationToken cancellation = default)
+        {
+            await _context.TransitionalOutboxes.AddAsync(transactionalOutbox);
+        }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellation = default)
         {

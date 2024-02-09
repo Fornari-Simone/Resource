@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource.API", "Resource.API\Resource.API.csproj", "{294BD2CF-B20D-4C9B-8573-5373717C89AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resource.API", "Resource.API\Resource.API.csproj", "{294BD2CF-B20D-4C9B-8573-5373717C89AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource.Repository", "Resource.Repository\Resource.Repository.csproj", "{4B89EFCD-7B76-4C9A-B1C7-2DCF7FC4A559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resource.Repository", "Resource.Repository\Resource.Repository.csproj", "{4B89EFCD-7B76-4C9A-B1C7-2DCF7FC4A559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource.Business", "Resource.Business\Resource.Business.csproj", "{8B9899DA-53B7-47B4-BD34-470BE254D198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resource.Business", "Resource.Business\Resource.Business.csproj", "{8B9899DA-53B7-47B4-BD34-470BE254D198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource.ClientHTTP", "Resource.ClientHTTP\Resource.ClientHTTP.csproj", "{B1B6B772-EF81-4364-99B7-EDE0CD7DA24B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resource.ClientHTTP", "Resource.ClientHTTP\Resource.ClientHTTP.csproj", "{B1B6B772-EF81-4364-99B7-EDE0CD7DA24B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource.Shared", "Resource.Shared\Resource.Shared.csproj", "{A8C0E7FE-F6B9-49FF-81EB-7C98AE4E076F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resource.Shared", "Resource.Shared\Resource.Shared.csproj", "{A8C0E7FE-F6B9-49FF-81EB-7C98AE4E076F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

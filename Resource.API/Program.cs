@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Resource.Business;
 using Resource.Business.Abstraction;
 using Resource.Business.Kafka;
+using Resource.Business.Profiles;
 using Resource.Repository;
 using Resource.Repository.Abstraction;
 
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<ResourceDbContext>(options =>
 builder.Services.AddScoped<IBusiness, Business>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddKafkaProducerService<KafkaTopicsOutput, ProducerService>(builder.Configuration);
+object value = builder.Services.AddAutoMapper(typeof(AssemblyMarker));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

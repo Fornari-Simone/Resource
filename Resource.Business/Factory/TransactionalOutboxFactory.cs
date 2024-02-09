@@ -12,19 +12,28 @@ using Utility.Kafka.Messages;
 
 namespace Resource.Business.Factory
 {
-    public static class TransitionalOutboxFactory
+    public static class TransactionalOutboxFactory
     {
-        public static TransitionalOutbox CreatInsert(ResourceDTO resourceDTO)
+        public static TransactionalOutbox CreateInsert(ResourceDTO resourceDTO)
         {
             return Create(resourceDTO, Operations.Insert);
         }
 
-        private static TransitionalOutbox Create(ResourceDTO resourceDTO, string insert)
+        public static TransactionalOutbox CreateDelete(ResourceDTO characterDTO)
+        {
+            return Create(characterDTO, Operations.Delete);
+        }
+
+        public static TransactionalOutbox CreateUpdate(ResourceDTO characterDTO)
+        {
+            return Create(characterDTO, Operations.Update);
+        }
+        private static TransactionalOutbox Create(ResourceDTO resourceDTO, string insert)
         {
             return Create(nameof(ResourceDb), resourceDTO, insert);
         }
 
-        private static TransitionalOutbox Create<TDTO>(string v, TDTO resourceDTO, string insert) where TDTO : class, new()
+        private static TransactionalOutbox Create<TDTO>(string v, TDTO resourceDTO, string insert) where TDTO : class, new()
         {
             OperationMessage<TDTO> operationMessage = new OperationMessage<TDTO>()
             {
@@ -33,7 +42,7 @@ namespace Resource.Business.Factory
             };
             operationMessage.CheckMessage();
 
-            return new TransitionalOutbox()
+            return new TransactionalOutbox()
             {
                 Tabella = v,
                 Messaggio = JsonSerializer.Serialize(operationMessage)

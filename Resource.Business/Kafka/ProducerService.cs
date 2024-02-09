@@ -26,7 +26,7 @@ namespace Resource.Business.Kafka
             IRepository repository = scope.ServiceProvider.GetRequiredService<IRepository>();
 
             Logger.LogInformation("Acquisizione TransitionalOutbox");
-            IEnumerable<TransitionalOutbox> transactionalOutboxes = (await repository.GetAllTransactionalOutbox(cancellation)).OrderBy(x => x.ID);
+            IEnumerable<TransactionalOutbox> transactionalOutboxes = (await repository.GetAllTransactionalOutbox(cancellation)).OrderBy(x => x.ID);
             if(!transactionalOutboxes.Any())
             {
                 Logger.LogInformation($"Nessun TransitionalOutbox");
@@ -35,11 +35,11 @@ namespace Resource.Business.Kafka
 
             Logger.LogInformation("{Count} TransitionalOutbox", transactionalOutboxes.Count());
 
-            foreach (TransitionalOutbox item in transactionalOutboxes)
+            foreach (TransactionalOutbox item in transactionalOutboxes)
             {
-                string message = $"del record {nameof(TransitionalOutbox)
-                    } con {nameof(TransitionalOutbox.ID)} = {item.ID}, {nameof(TransitionalOutbox.Tabella)
-                    } = '{item.Tabella}' e {nameof(TransitionalOutbox.Messaggio)} = '{item.Messaggio}'";
+                string message = $"del record {nameof(TransactionalOutbox)
+                    } con {nameof(TransactionalOutbox.ID)} = {item.ID}, {nameof(TransactionalOutbox.Tabella)
+                    } = '{item.Tabella}' e {nameof(TransactionalOutbox.Messaggio)} = '{item.Messaggio}'";
 
                 Logger.LogInformation("Elaborazione {message}", message);
 

@@ -24,9 +24,9 @@ namespace Resource.Business.Factory
             return Create(nameof(ResourceDb), resourceDTO, insert);
         }
 
-        private static TransitionalOutbox Create<DTO>(string v, DTO resourceDTO, string insert) where DTO : class, new()
+        private static TransitionalOutbox Create<TDTO>(string v, TDTO resourceDTO, string insert) where TDTO : class, new()
         {
-            OperationMessage<DTO> operationMessage = new OperationMessage<DTO>()
+            OperationMessage<TDTO> operationMessage = new OperationMessage<TDTO>()
             {
                 Dto = resourceDTO,
                 Operation = insert

@@ -13,10 +13,11 @@ namespace Resource.Business
         private readonly IRepository _repository;
         private readonly ILogger<Business> _logger;
         private readonly IMapper _mapper;
-        public Business(ILogger<Business> logger, IRepository repository) 
+        public Business(ILogger<Business> logger, IRepository repository, IMapper mapper) 
         { 
             _logger = logger;
             _repository = repository;
+            _mapper = mapper;
         }
         public async Task AddResource(ResourceDTO resourceDTO, CancellationToken cancellation = default)
         {

@@ -23,7 +23,6 @@ namespace Resource.Business
         {
             await _repository.AddResource(new ResourceDb
             {
-                ID = resourceDTO.ID,
                 Name = resourceDTO.Name,
                 Grade = resourceDTO.Grade,
                 Own = resourceDTO.Own,
@@ -43,10 +42,10 @@ namespace Resource.Business
             await _repository.SaveChangesAsync();
         }
 
-        public async Task<ResourceDTO> GetResource(int ID, CancellationToken cancellation = default)
+        public async Task<ResourceDTO?> GetResource(int ID, CancellationToken cancellation = default)
         {
-            ResourceDb resourceDb = await _repository.GetResource(ID, cancellation);
-            return new ResourceDTO
+            ResourceDb? resourceDb = await _repository.GetResource(ID, cancellation);
+            return resourceDb == null ? null : new ResourceDTO
             {
                 ID = resourceDb.ID,
                 Name = resourceDb.Name,

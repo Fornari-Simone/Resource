@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resource.Repository;
 
@@ -11,9 +12,11 @@ using Resource.Repository;
 namespace Resource.API.Migrations
 {
     [DbContext(typeof(ResourceDbContext))]
-    partial class ResourceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240210103802_TransactionalOutbox")]
+    partial class TransactionalOutbox
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

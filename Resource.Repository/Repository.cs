@@ -36,24 +36,24 @@ namespace Resource.Repository
         
         public async Task DeleteTransactionalOutbox(long ID, CancellationToken cancellation = default)
         {
-            _context.TransitionalOutboxes.Remove(
+            _context.TransactionalOutboxes.Remove(
                 (await GetAllTransactionalOutboxByKey(ID, cancellation)) ??
                 throw new ArgumentException($"TransactionalOutbox con ID {ID} non trovato", nameof(ID)));
         }
 
         public async Task<TransactionalOutbox?> GetAllTransactionalOutboxByKey(long ID, CancellationToken cancellation = default)
         {
-            return await _context.TransitionalOutboxes.FirstOrDefaultAsync(x => x.ID == ID, cancellation);
+            return await _context.TransactionalOutboxes.FirstOrDefaultAsync(x => x.ID == ID, cancellation);
         }
 
         public async Task<IEnumerable<TransactionalOutbox>> GetAllTransactionalOutbox(CancellationToken cancellation = default)
         {
-            return await _context.TransitionalOutboxes.ToListAsync(cancellation);
+            return await _context.TransactionalOutboxes.ToListAsync(cancellation);
         }
 
         public async Task InsertTransactionalOutbox(TransactionalOutbox transactionalOutbox, CancellationToken cancellation = default)
         {
-            await _context.TransitionalOutboxes.AddAsync(transactionalOutbox);
+            await _context.AddAsync(transactionalOutbox, cancellation);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellation = default)

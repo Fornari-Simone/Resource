@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resource.Repository;
 
@@ -11,9 +12,11 @@ using Resource.Repository;
 namespace Resource.API.Migrations
 {
     [DbContext(typeof(ResourceDbContext))]
-    partial class ResourceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240210101718_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,7 +91,7 @@ namespace Resource.API.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("TransactionalOutboxes");
+                    b.ToTable("TransactionalOutbox");
                 });
 
             modelBuilder.Entity("Resource.Repository.Model.ResourceDb", b =>

@@ -52,10 +52,10 @@ namespace Resource.Business.Kafka
                         _ => throw new ArgumentOutOfRangeException($"La tabella {item.Tabella} non è prevista come topic nel Producer")
                     };
 
-                    Logger.LogInformation($"Scrittura sul topic: {topic}", topic);
+                    Logger.LogInformation("Scrittura sul topic: {topic}", topic);
                     await ProducerClient.ProduceAsync(topic, item.Messaggio, cancellation);
 
-                    Logger.LogInformation($"Eliminazione {message}", message);
+                    Logger.LogInformation("Eliminazione {message}", message);
                     await repository.DeleteTransactionalOutbox(item.ID, cancellation);
 
                     await repository.SaveChangesAsync(cancellation);

@@ -20,8 +20,11 @@ namespace Resource.Repository
             modelBuilder.Entity<ResourceDb>().HasMany(x => x.resources).WithOne(x => x.resource).HasForeignKey(x => x.Material3);
 
             modelBuilder.Entity<ResourceDb>().Property(x => x.ID).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<TransactionalOutbox>().HasKey(e => new { e.ID });
+            modelBuilder.Entity<TransactionalOutbox>().Property(e => e.ID).ValueGeneratedOnAdd();
         }
         public DbSet<ResourceDb> ResourceDb { get; set; }
-        public DbSet<TransactionalOutbox> TransitionalOutboxes { get; set; }
+        public DbSet<TransactionalOutbox> TransactionalOutboxes { get; set; }
     }
 }

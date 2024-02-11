@@ -31,7 +31,7 @@ namespace Resource.Repository
             {
                 resourceDb.Own = 0;
             }
-            resourceDb.Own += delta;
+            resourceDb.Own = resourceDb.Own - delta;
         }
         
         public async Task DeleteTransactionalOutbox(long ID, CancellationToken cancellation = default)

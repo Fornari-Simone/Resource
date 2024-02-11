@@ -24,18 +24,14 @@ namespace Resource.Repository
         {
             _context.ResourceDb.Remove(resourceDb);
         }
-        public async Task UpdateResource(int delta, int ID, CancellationToken cancellation = default)
+        public async Task UpdateResource(int ID, int delta, CancellationToken cancellation = default)
         {
             ResourceDb? resourceDb = await this.GetResource(ID, cancellation);
-            if (resourceDb == null)
-            {
-                return;
-            }
-            if (delta < 0 && resourceDb.Own < delta)
+            if (delta < 0 && resourceDb.Own < -delta)
             {
                 resourceDb.Own = 0;
             }
-            resourceDb.Own = resourceDb.Own - delta;
+            resourceDb.Own += delta;
         }
         
         public async Task DeleteTransactionalOutbox(long ID, CancellationToken cancellation = default)

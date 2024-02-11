@@ -27,6 +27,10 @@ namespace Resource.Repository
         public async Task UpdateResource(int delta, int ID, CancellationToken cancellation = default)
         {
             ResourceDb? resourceDb = await this.GetResource(ID, cancellation);
+            if (resourceDb == null)
+            {
+                return;
+            }
             if (delta < 0 && resourceDb.Own < delta)
             {
                 resourceDb.Own = 0;
